@@ -1,0 +1,3 @@
+restrict,port-forwarding,permitopen="127.0.0.1:9100",permitopen="127.0.0.1:9835",command="/usr/sbin/nologin" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAkFp6PqJQgY9eFYSH51H9e0G1HT/m+VQXziWqpOeFg llmmon-telemetry@vmi3632146
+restrict,port-forwarding,permitopen="127.0.0.1:11434",command="/usr/sbin/nologin" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERIbk0vgS7g/Jk3PDshtnia45uKyJej8fox9mxGWOPu qwenagent-ollama@vmi3632146
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkGtphheZaGvh2KSvj44PsIN3oYuc8W+g1ZF1Bu2nX2 ai-monitoring@vmi3632146
