@@ -8,7 +8,9 @@ ldconfig -p | grep -q libnvidia-ml.so.1 && ok "libnvidia-ml present" || fail "li
 command -v supervisorctl >/dev/null && supervisorctl status >/dev/null 2>&1; [ $? -le 3 ] && ok "supervisord reachable" || fail "supervisord not reachable"
 for p in 9100 9835; do
   if ss -ltnH "sport = :$p" | grep -q .; then
-    supervisorctl status 2>/dev/null | grep -q "^llmmon-.*RUNNING" && ok "port $p in use by llmmon (already running)" || fail "port $p already in use by something else"
+    # capture first: supervisorctl exits 3 when ANY program (e.g. Vast's jupyter) is not running
+    st=$(supervisorctl status $PROGRAMS 2>/dev/null || true)
+    grep -q "^llmmon-.*RUNNING" <<<"$st" && ok "port $p in use by llmmon (already running)" || fail "port $p already in use by something else"
   else ok "port $p free"; fi
 done
 "$AGENT_DIR/bin/node_exporter" --version >/dev/null 2>&1 && ok "node_exporter binary runs" || fail "node_exporter binary"

@@ -12,7 +12,7 @@ ddcbcd92b4124a5d20e679eded18ce0fe40ad4d224fd31111e65115f43def6c7  ./scripts/star
 ffd07647b72ecf4c0d4ae955ab41cdd652ee35de3f77f7a357923eb258c25629  ./scripts/status.sh
 00394f379f209097c334a8a8f313c44f3c6425a8784533e210dc357e1f7852bb  ./scripts/stop.sh
 16af9a6c106d73e49bc851ac70fbb0a0dba36b5eadda321e901574fc46d1dbdd  ./scripts/uninstall.sh
-18b48486ad4b9ebabf7453edb0f869e0b0b01ea74c3796e39d752043cbb2f7de  ./scripts/validate.sh
+988af034953070163fb64c4af7eeb16a7df5f2a3e923dbc3de99ff8cd9929699  ./scripts/validate.sh
 9e85964f481c789b108fbda0ad953fd5a7f55001e2ab31582e8817c06fbce2b4  ./supervisor/llmmon-gpu-exporter.conf
 022d179051750aa21babd7aa41cd1c5822b29dcf90972a3646471d1829f0e2f5  ./supervisor/llmmon-keys-guard.conf
 7f81dd36e73a1735ed7f55ebbb01783261e5386e4f22407c9cb74e9d1f859fa5  ./supervisor/llmmon-node-exporter.conf

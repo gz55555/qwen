@@ -15,7 +15,7 @@
 #                     its SSH tunnels (monitoring + Qwen agent), Prometheus targets and hooks
 #
 # Options:
-#   --token-file F   registration token file (or env LLMMON_REGISTER_TOKEN; otherwise you are prompted)
+#   --token-file F   registration token file (or env LLMMON_REGISTER_TOKEN); without one, step 6 prints the central command
 #   --no-register    skip step 6; prints the command to run on the central server instead
 #   --host IP --port PORT   override the public SSH endpoint (default: Vast's PUBLIC_IPADDR / VAST_TCP_PORT_22)
 #   --no-warm        do not load the model into VRAM
@@ -165,8 +165,8 @@ manual() { echo; echo "  Run this on the central server instead:"; echo "    $CE
 
 TOKEN="${LLMMON_REGISTER_TOKEN:-}"
 [ -z "$TOKEN" ] && [ -n "$TOKEN_FILE" ] && TOKEN=$(tr -d ' \n\r' < "$TOKEN_FILE")
-if [ -z "$TOKEN" ] && [ -t 0 ]; then read -r -s -p "  registration token (input hidden): " TOKEN; echo; fi
-[ -n "$TOKEN" ] || { warn "no registration token"; manual; exit 0; }
+# auto-registration is opt-in (central endpoint must be enabled); without a token just print the command
+[ -n "$TOKEN" ] || { ok "box is ready"; manual; exit 0; }
 AUTH=(-H "Authorization: Bearer $TOKEN")
 BODY=$(printf '{"instance_id":"%s","host":"%s","port":%s,"fingerprint":"%s","model":"%s"}' "$INSTANCE_ID" "$PUB_HOST" "$PUB_PORT" "$FPR" "$MODEL")
 R=$(curl -s -m 20 -w '\n%{http_code}' "${AUTH[@]}" -H 'Content-Type: application/json' -d "$BODY" "$CENTRAL_URL/gpu/register") || R=$'\n000'

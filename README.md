@@ -22,8 +22,11 @@ At the end it prints **one command for the central server**, like:
 Run it on the central server (or paste it to Claude there). It repoints the monitoring tunnel, the Qwen-agent
 tunnel, the Prometheus targets and the post-GPU hooks, then waits until live GPU telemetry arrives.
 
-> If the central registration endpoint is enabled, `./setup.sh` asks for the registration token and does
-> this last step itself. Without a token it just prints the command, as shown above.
+> Optional: if the central registration endpoint is enabled, pass `--token-file F` (or set `LLMMON_REGISTER_TOKEN`)
+> and `./setup.sh` does this last step itself.
+>
+> Fingerprint check: the central server compares the box's host key exactly, so copy the printed command
+> rather than retyping it (`0`/`O` and `l`/`1` are easy to confuse).
 
 ## What `setup.sh` does
 
